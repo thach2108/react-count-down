@@ -1,10 +1,10 @@
 {
-  "name": "react-count-down",
+  "name": "react-count-down-animation",
   "version": "1.0.0",
-  "description": "some animations",
+  "description": "some count down animations",
   "author": "thach2108",
   "license": "MIT",
-  "repository": "thach2108/react-count-down",
+  "repository": "thach2108/react-count-down-animation",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",

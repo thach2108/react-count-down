@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Circle } from 'react-count-down'
+import { Circle } from 'react-count-down-animation'
 
 const App = () => {
   return (

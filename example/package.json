@@ -1,5 +1,5 @@
 {
-  "name": "react-count-down-example",
+  "name": "react-count-down-animation-example",
   "homepage": ".",
   "version": "0.0.0",
   "private": true,
@@ -18,7 +18,7 @@
     "@types/react": "file:../node_modules/@types/react",
     "@types/react-dom": "file:../node_modules/@types/react-dom",
     "react": "file:../node_modules/react",
-    "react-count-down": "file:..",
+    "react-count-down-animation": "file:..",
     "react-dom": "file:../node_modules/react-dom",
     "react-scripts": "file:../node_modules/react-scripts",
     "typescript": "^3.7.5"
