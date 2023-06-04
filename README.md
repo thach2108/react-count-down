@@ -20,6 +20,8 @@ const App = () => {
   return <Circle />
 }
 ```
+![Screenshot 2023-06-05 013448](https://github.com/thach2108/react-count-down-animation/assets/25563285/475ce2f8-6130-4261-8db5-bf391b87d50b)
+
 
 ## License
 
