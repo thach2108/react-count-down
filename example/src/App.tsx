@@ -12,18 +12,25 @@ const App = () => {
             <div className='col-span-2'>
               <ul className='pl-5'>
                 <li className='text-lg'>
-                  <Link to='/'>Circle animation</Link>
+                  <Link to='/react-count-down'>Circle animation</Link>
                 </li>
                 <li className='text-lg'>
-                  <Link to='/line'>Line animation</Link>
+                  <Link to='/react-count-down/line'>Line animation</Link>
                 </li>
               </ul>
             </div>
             <div className='col-span-8'>
               <Routes>
                 <Route path='/' element={<ExampleCircle />} />
-                <Route path='/circle' element={<ExampleCircle />} />
-                <Route path='/line' element={<ExampleLine />} />
+                <Route path='/react-count-down' element={<ExampleCircle />} />
+                <Route
+                  path='/react-count-down/circle'
+                  element={<ExampleCircle />}
+                />
+                <Route
+                  path='/react-count-down/line'
+                  element={<ExampleLine />}
+                />
               </Routes>
             </div>
           </div>
