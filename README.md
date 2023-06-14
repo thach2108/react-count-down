@@ -21,7 +21,8 @@ const App = () => {
 }
 ```
 
-![Screenshot 2023-06-05 013448](https://github.com/thach2108/react-count-down-animation/assets/25563285/475ce2f8-6130-4261-8db5-bf391b87d50b)
+![image](https://github.com/thach2108/react-count-down-animation/assets/25563285/ad61bd28-9ea9-4536-9566-8153a9e78a25)
+![image](https://github.com/thach2108/react-count-down-animation/assets/25563285/cd64c72f-14d9-4368-ac70-6396d6d5d44d)
 
 ## Example
 
