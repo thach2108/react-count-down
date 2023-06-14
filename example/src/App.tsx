@@ -1,4 +1,3 @@
-// import { Link, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Suspense } from 'react'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import ExampleCircle from './pages/Circle'
