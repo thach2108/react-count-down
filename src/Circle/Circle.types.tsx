@@ -3,11 +3,13 @@ export type KeyframesType = {
   negative?: boolean
   timeLoss: number
   totalTime: number
+  backgroundColor?: string
 }
 
 export type CounterViewStyleType = {
   width: number
   height: number
+  backgroundColor: string
 }
 
 export type OverlayLayerStyleType = {
@@ -16,6 +18,7 @@ export type OverlayLayerStyleType = {
   timeLoss: number
   totalTime: number
   borderWidth: number
+  backgroundColor: string
 }
 
 export type MainLayerStyleType = OverlayLayerStyleType

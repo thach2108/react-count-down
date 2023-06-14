@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
-import { ANIMATION_TIME, COLOR } from '../utils/configs'
+import Couter from '../components/Counter'
+import { ViewerStyle } from '../components/Counter/Counter.styles'
+import { EAnimationType } from '../components/Counter/Counter.types'
+import { ANIMATION_TIME, BG_COLOR, COLOR } from '../utils/configs'
 import {
   CircleStyle,
   MainLayerStyle,
   OverlayLayerStyle,
-  StaticLayerStyle,
-  ViewerStyle
+  StaticLayerStyle
 } from './Circle.styles'
-import Couter from './Counter'
 
 export type CirclePropsType = {
   color?: string
-  index?: number
   width?: number
   height?: number
   negative?: boolean
-  className?: string
+  textColor?: string
   borderWidth?: number
+  backgroundColor?: string
   currentTime?: number
   totalTime?: number
   ready?: boolean
@@ -30,6 +31,8 @@ const Circle = ({
   ready = true,
   color = COLOR,
   borderWidth = 3,
+  textColor = COLOR,
+  backgroundColor = BG_COLOR,
   totalTime = ANIMATION_TIME,
   currentTime = ANIMATION_TIME,
   onRefresh = () => {}
@@ -42,13 +45,20 @@ const Circle = ({
   }
 
   return (
-    <CircleStyle width={width} height={height} className='circle-count-down'>
+    <CircleStyle
+      width={width}
+      height={height}
+      className='circle-count-down'
+      backgroundColor={backgroundColor}
+    >
       {ready ? (
         <React.Fragment>
           <Couter
-            currentTime={currentTime}
+            color={textColor}
             totalTime={totalTime}
+            currentTime={currentTime}
             onRefresh={handleRefresh}
+            animationType={EAnimationType.CIRCLE}
           />
           <MainLayerStyle
             color={color}
@@ -56,6 +66,7 @@ const Circle = ({
             timeLoss={timeLoss}
             borderWidth={borderWidth}
             totalTime={totalTime}
+            backgroundColor={backgroundColor}
           />
           <OverlayLayerStyle
             color={color}
@@ -63,11 +74,19 @@ const Circle = ({
             timeLoss={timeLoss}
             borderWidth={borderWidth}
             totalTime={totalTime}
+            backgroundColor={backgroundColor}
           ></OverlayLayerStyle>
         </React.Fragment>
       ) : (
-        <StaticLayerStyle color={color} borderWidth={borderWidth}>
-          <ViewerStyle className='circle-count-down__viewer'>
+        <StaticLayerStyle
+          color={color}
+          borderWidth={borderWidth}
+          backgroundColor={backgroundColor}
+        >
+          <ViewerStyle
+            className='count-down__viewer'
+            animationType={EAnimationType.CIRCLE}
+          >
             {totalTime}
           </ViewerStyle>
         </StaticLayerStyle>

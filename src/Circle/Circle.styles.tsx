@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import { BG_COLOR } from '../utils/configs'
 import {
   CounterViewStyleType as CircleStyleType,
   KeyframesType,
@@ -89,7 +90,8 @@ const overlayKeyframe = ({
   color,
   negative,
   timeLoss,
-  totalTime
+  totalTime,
+  backgroundColor
 }: KeyframesType) => {
   const milestones = (totalTime * 3) / 4 - timeLoss
   const bt = (
@@ -98,10 +100,10 @@ const overlayKeyframe = ({
   ).toFixed(2)
   return keyframes`
   0% {
-    border-top-color: ${negative ? '#ffffff' : color};
+    border-top-color: ${negative ? backgroundColor : color};
   }
   ${Number(bt) - 0.01 + '%'} {
-    border-top-color: ${negative ? '#ffffff' : color};
+    border-top-color: ${negative ? backgroundColor : color};
   }
   ${bt + '%'} {
     border-top-color: transparent;
@@ -110,19 +112,19 @@ const overlayKeyframe = ({
     border-top-color: transparent;
   }
   100% {
-    border-top-color: ${negative ? '#ffffff' : color};
+    border-top-color: ${negative ? backgroundColor : color};
   }
   `
 }
 
 export const CircleStyle = styled('div')<CircleStyleType>(
-  ({ width = 40, height = 40 }) => ({
+  ({ width = 40, height = 40, backgroundColor = BG_COLOR }) => ({
     width,
     height,
+    backgroundColor,
     display: 'flex',
     borderRadius: '100%',
     alignItems: 'center',
-    backgroundColor: '#fff',
     justifyContent: 'center',
     transform: `rotate(-45deg)`
   })
@@ -138,11 +140,13 @@ export const OverlayLayerStyle = styled.div<OverlayLayerStyleType>`
       color: p.color,
       negative: p.negative,
       timeLoss: p.timeLoss,
-      totalTime: p.totalTime
+      totalTime: p.totalTime,
+      backgroundColor: p.backgroundColor
     })};
   animation-duration: ${(p) => p.totalTime - p.timeLoss}s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  background-color: transparent;
 `
 
 export const MainLayerStyle = styled.div<MainLayerStyleType>`
@@ -174,21 +178,14 @@ export const MainLayerStyle = styled.div<MainLayerStyleType>`
   &::after {
     inset: ${(p) => (p.negative ? 0 : -1)}px;
     border: ${(p) => p.borderWidth + (p.negative ? 0 : 2)}px solid transparent;
-    border-top-color: ${(p) => (p.negative ? p.color : '#ffffff')};
+    border-top-color: ${(p) => (p.negative ? p.color : p.backgroundColor)};
     animation-name: ${(p) =>
       rotateMainKeyframe({
         timeLoss: p.timeLoss,
         totalTime: p.totalTime
       })};
   }
-`
-
-export const ViewerStyle = styled.span`
-  position: absolute;
-  font-weight: 700;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  transform: rotate(45deg);
+  background-color: transparent;
 `
 
 export const StaticLayerStyle = styled.div<StaticLayerStyleType>`
@@ -200,4 +197,5 @@ export const StaticLayerStyle = styled.div<StaticLayerStyleType>`
   box-sizing: border-box;
   justify-content: center;
   border: ${(p) => p.borderWidth}px solid ${(p) => p.color};
+  background-color: ${(p) => p.backgroundColor};
 `

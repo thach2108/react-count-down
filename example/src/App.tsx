@@ -1,63 +1,36 @@
-import React from 'react'
-
-import { Circle } from 'react-count-down-animation'
+// import { Link, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { Suspense } from 'react'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import ExampleCircle from './pages/Circle'
+import ExampleLine from './pages/Line'
 
 const App = () => {
   return (
-    <div
-      style={{
-        maxWidth: 1200,
-        margin: '2rem auto'
-      }}
-    >
-      <div className='record'>
-        <div className='record__head'>
-          <Circle />
-          <h4>Positive</h4>
-        </div>
-        <code>{'<Circle />'}</code>
-      </div>
-      <div className='record'>
-        <div className='record__head'>
-          <Circle negative />
-          <h4>Negative</h4>
-        </div>
-        <code>{'<Circle negative />'}</code>
-      </div>
-      <div className='record'>
-        <div className='record__head'>
-          <Circle ready={false} />
-          <h4>Waiting for a promise or an observable</h4>
-        </div>
-        <code>{'<Circle ready={false} />'}</code>
-      </div>
-      <div className='record'>
-        <div className='record__head'>
-          <Circle currentTime={42} />
-          <h4>The current time is between 0 and total</h4>
-        </div>
-        <code>{'<Circle currentTime={42} />'}</code>
-      </div>
-      <div className='record'>
-        <div className='record__head custom'>
-          <Circle borderWidth={5} color='red' width={50} height={50} />
-          <h4>Custom the circle's style </h4>
-        </div>
-        <code>
-          {'<Circle borderWidth={5} color="red" width={50} height={50} />'}
-        </code>
-        <div style={{ margin: '1rem 0 5px 1rem' }}>
-          or <b>Custom text color</b>
-        </div>
-        <code>
-          .circle-count-down__viewer:
-          {`{
-            color: green;
-          }`}
-        </code>
-      </div>
+    <div className='mx-auto max-w-screen-xl mt-8 mb-16 px-4'>
+      <BrowserRouter>
+        <Suspense fallback={<div>Loading...</div>}>
+          <div className='grid grid-cols-10 gap-4'>
+            <div className='col-span-2'>
+              <ul className='pl-5'>
+                <li className='text-lg'>
+                  <Link to='/'>Circle animation</Link>
+                </li>
+                <li className='text-lg'>
+                  <Link to='/line'>Line animation</Link>
+                </li>
+              </ul>
+            </div>
+            <div className='col-span-8'>
+              <Routes>
+                <Route path='/' element={<ExampleCircle />} />
+                <Route path='/circle' element={<ExampleCircle />} />
+                <Route path='/line' element={<ExampleLine />} />
+              </Routes>
+            </div>
+          </div>
+        </Suspense>
+      </BrowserRouter>
     </div>
   )
 }
-
 export default App
