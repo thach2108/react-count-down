@@ -1,6 +1,6 @@
 {
   "name": "react-count-down-animation-example",
-  "homepage": ".",
+  "homepage": "./react-count-down/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
