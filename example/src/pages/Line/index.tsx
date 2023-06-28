@@ -29,6 +29,7 @@ const ExampleLine = () => {
       <div className='mb-5'>
         <div className='mb-3 flex items-center gap-4'>
           <Line
+            currentTime={29}
             gradientBgColors={[
               '#22c55e',
               '#84cc16',
@@ -45,6 +46,7 @@ const ExampleLine = () => {
           <div>{`import { Line } from 'react-count-down-animation'`}</div>
           <br />
           {`<Line
+            currentTime={29} 
             gradientBgColors={[
               '#22c55e',
               '#84cc16',

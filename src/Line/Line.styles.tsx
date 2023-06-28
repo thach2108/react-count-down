@@ -14,6 +14,8 @@ const mainKeyframe = ({
   totalTime,
   currentTime
 }: KeyframesType) => {
+  let firstBg = ``
+
   const renderBg = () => {
     if (gradients.length < 2) return ''
 
@@ -22,8 +24,9 @@ const mainKeyframe = ({
     rainbow.setNumberRange(0, totalTime)
     let startRange = currentTime === totalTime ? 0 : currentTime
     let endRange = totalTime
-    let css = ``
+    firstBg = `background-color: #${rainbow.colourAt(startRange)}`
 
+    let css = ``
     for (let i = startRange; i <= endRange; i++) {
       css += `${(100 * i) / endRange}% {background-color: #${rainbow.colourAt(
         i
@@ -33,12 +36,15 @@ const mainKeyframe = ({
     return css
   }
 
+  let css = renderBg()
+
   return keyframes`
   0% {
     ${direction === EDirectionType.HORIZONTAL ? 'width' : 'height'}: 
     ${negative ? 0 : (currentTime * 100) / totalTime}%;
+    ${firstBg}
   }
-  ${renderBg()}
+  ${css}
   100% {
     ${direction === EDirectionType.HORIZONTAL ? 'width' : 'height'}: 
     ${negative ? (currentTime * 100) / totalTime : 0}%;
