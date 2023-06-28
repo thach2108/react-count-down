@@ -13,6 +13,7 @@ export type LinePropsType = {
   negative?: boolean
   borderColor?: string
   backgroundColor?: string
+  gradientBgColors?: string[]
   direction?: EDirectionType
   currentTime?: number
   totalTime?: number
@@ -27,6 +28,7 @@ const Line = ({
   ready = true,
   color = BG_COLOR,
   borderColor = COLOR,
+  gradientBgColors = [],
   backgroundColor = COLOR,
   totalTime = ANIMATION_TIME,
   currentTime = ANIMATION_TIME,
@@ -55,6 +57,7 @@ const Line = ({
             direction={direction}
             currentTime={current}
             backgroundColor={backgroundColor}
+            gradientBgColors={gradientBgColors}
           />
           <Couter
             color={color}

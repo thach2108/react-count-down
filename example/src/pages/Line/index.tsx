@@ -27,6 +27,37 @@ const ExampleLine = () => {
         </code>
       </div>
       <div className='mb-5'>
+        <div className='mb-3 flex items-center gap-4'>
+          <Line
+            gradientBgColors={[
+              '#22c55e',
+              '#84cc16',
+              '#eab308',
+              '#f59e0b',
+              '#f97316',
+              '#dc2626',
+              '#dc2626'
+            ]}
+          />
+          <h4 className='text-xl'>Gradient</h4>
+        </div>
+        <code>
+          <div>{`import { Line } from 'react-count-down-animation'`}</div>
+          <br />
+          {`<Line
+            gradientBgColors={[
+              '#22c55e',
+              '#84cc16',
+              '#eab308',
+              '#f59e0b',
+              '#f97316',
+              '#dc2626',
+              '#dc2626'
+            ]}
+          />`}
+        </code>
+      </div>
+      <div className='mb-5'>
         <div className='mb-3 flex items-center gap-4 custom'>
           <Line
             width={50}

@@ -1,6 +1,7 @@
 export type KeyframesType = {
   totalTime: number
   negative?: boolean
+  gradients: string[]
   currentTime: number
   direction: EDirectionType
 }
@@ -17,6 +18,7 @@ export type MainLayerStyleType = {
   currentTime: number
   backgroundColor: string
   direction: EDirectionType
+  gradientBgColors: string[]
 }
 
 export enum EDirectionType {

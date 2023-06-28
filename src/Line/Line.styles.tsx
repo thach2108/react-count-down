@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import Rainbow from '../utils/Rainbow'
 import {
   EDirectionType,
   KeyframesType,
@@ -8,20 +9,39 @@ import {
 
 const mainKeyframe = ({
   negative,
-  currentTime,
+  gradients,
+  direction,
   totalTime,
-  direction
+  currentTime
 }: KeyframesType) => {
+  const renderBg = () => {
+    if (gradients.length < 2) return ''
+
+    let rainbow = new Rainbow()
+    rainbow.setSpectrum(gradients)
+    rainbow.setNumberRange(0, totalTime)
+    let startRange = currentTime === totalTime ? 0 : currentTime
+    let endRange = totalTime
+    let css = ``
+
+    for (let i = startRange; i <= endRange; i++) {
+      css += `${(100 * i) / endRange}% {background-color: #${rainbow.colourAt(
+        i
+      )};}`
+    }
+
+    return css
+  }
+
   return keyframes`
   0% {
-    ${direction === EDirectionType.HORIZONTAL ? 'width' : 'height'}: ${
-    negative ? 0 : (currentTime * 100) / totalTime
-  }%;
+    ${direction === EDirectionType.HORIZONTAL ? 'width' : 'height'}: 
+    ${negative ? 0 : (currentTime * 100) / totalTime}%;
   }
+  ${renderBg()}
   100% {
-    ${direction === EDirectionType.HORIZONTAL ? 'width' : 'height'}: ${
-    negative ? (currentTime * 100) / totalTime : 0
-  }%;
+    ${direction === EDirectionType.HORIZONTAL ? 'width' : 'height'}: 
+    ${negative ? (currentTime * 100) / totalTime : 0}%;
   }
   `
 }
@@ -53,7 +73,8 @@ export const MainLayerStyle = styled.div<MainLayerStyleType>`
       negative: p.negative,
       totalTime: p.totalTime,
       direction: p.direction,
-      currentTime: p.currentTime
+      currentTime: p.currentTime,
+      gradients: p.gradientBgColors
     })};
   ${(p) =>
     p.direction === EDirectionType.HORIZONTAL ? 'height' : 'width'}: 100%;

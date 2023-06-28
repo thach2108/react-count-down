@@ -6,9 +6,7 @@ const ExampleCircle = () => {
     <React.Fragment>
       <div className='mb-5'>
         <div className='mb-3 flex items-center gap-4'>
-          <div className='p-2 bg-gray-200'>
-            <Circle backgroundColor='rgb(229, 231, 235)' />
-          </div>
+          <Circle backgroundColor='rgb(229, 231, 235)' />
           <h4 className='text-xl'>Positive</h4>
         </div>
         <code>
@@ -19,9 +17,7 @@ const ExampleCircle = () => {
       </div>
       <div className='mb-5'>
         <div className='mb-3 flex items-center gap-4'>
-          <div className='p-2 bg-gray-200'>
-            <Circle negative backgroundColor='rgb(229, 231, 235)' />
-          </div>
+          <Circle negative backgroundColor='rgb(229, 231, 235)' />
           <h4 className='text-xl'>Negative</h4>
         </div>
         <code>
