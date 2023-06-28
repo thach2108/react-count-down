@@ -190,6 +190,16 @@ const ExampleLine = () => {
             <td></td>
           </tr>
           <tr>
+            <td>gradientBgColors?</td>
+            <td>
+              <span className='text-green-600'>string[]</span>
+            </td>
+            <td>
+              <span className='text-blue-600'>[]</span>
+            </td>
+            <td>Min length is 2. ex: ["green", "yellow", "red"]</td>
+          </tr>
+          <tr>
             <td>onRefresh?</td>
             <td>
               <span className='text-green-600'>() ={'>'} void</span>
