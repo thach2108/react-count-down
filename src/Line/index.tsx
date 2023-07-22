@@ -19,7 +19,7 @@ export type LinePropsType = {
   totalTime?: number
   ready?: boolean
   onRefresh?: () => void
-  renderText?: (val: number) => string
+  renderText?: (val: number) => React.ReactNode | string
 }
 
 const Line = ({

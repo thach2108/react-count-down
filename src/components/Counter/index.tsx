@@ -8,7 +8,7 @@ export type CouterPropsType = {
   totalTime: number
   currentTime: number
   animationType: EAnimationType
-  renderText?: (val: number) => string
+  renderText?: (val: number) => React.ReactNode | string
   onRefresh: () => void
 }
 

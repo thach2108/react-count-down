@@ -36,6 +36,7 @@ const ExampleCircle = () => {
             textColor='green'
             totalTime={40}
             currentTime={23}
+            renderText={() => <span>test</span>}
           />
           <h4 className='text-xl'>Custom the circle's styles </h4>
         </div>
