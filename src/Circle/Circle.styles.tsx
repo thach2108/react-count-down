@@ -4,11 +4,11 @@ import {
   CounterViewStyleType as CircleStyleType,
   KeyframesType,
   MainLayerStyleType,
-  OverlayLayerStyleType,
-  StaticLayerStyleType
+  OverlayLayerStyleType
 } from './Circle.types'
 
 const borderMainKeyframe = ({
+  ready,
   color,
   negative,
   timeLoss,
@@ -48,33 +48,52 @@ const borderMainKeyframe = ({
     ${getBB(0.5)}
     ${getBL(0.75)}
   }
-  ${Number(br) - 0.01 + '%'} {
-    border-right-color:  ${negative ? 'transparent' : color};
+  
+  ${
+    ready
+      ? `
+    ${Number(br) - 0.01 + '%'} {
+      border-right-color:  ${negative ? 'transparent' : color};
+    }
+    ${br + '%'} {
+      border-right-color: ${negative ? color : 'transparent'};
+    }
+    ${Number(bb) - 0.01 + '%'} {
+      border-bottom-color:${negative ? 'transparent' : color};
+    }
+    ${bb + '%'} {
+      border-bottom-color: ${negative ? color : 'transparent'};
+    }
+    ${Number(bl) - 0.01 + '%'} {
+      border-left-color:${negative ? 'transparent' : color};
+    }
+    ${bl + '%'} {
+      border-left-color: ${negative ? color : 'transparent'};
+    }`
+      : ``
   }
-  ${br + '%'} {
-    border-right-color: ${negative ? color : 'transparent'};
-  }
-  ${Number(bb) - 0.01 + '%'} {
-    border-bottom-color:${negative ? 'transparent' : color};
-  }
-  ${bb + '%'} {
-    border-bottom-color: ${negative ? color : 'transparent'};
-  }
-  ${Number(bl) - 0.01 + '%'} {
-    border-left-color:${negative ? 'transparent' : color};
-  }
-  ${bl + '%'} {
-    border-left-color: ${negative ? color : 'transparent'};
-  }
+
   100% {
-    border-right-color: ${negative ? color : 'transparent'};
-    border-bottom-color: ${negative ? color : 'transparent'};
-    border-left-color: ${negative ? color : 'transparent'}
+    ${
+      ready
+        ? `
+          border-right-color: ${negative ? color : 'transparent'};
+          border-bottom-color: ${negative ? color : 'transparent'};
+          border-left-color: ${negative ? color : 'transparent'}
+        `
+        : `
+          ${getBR(0.25)}
+          ${getBB(0.5)}
+          ${getBL(0.75)}
+        `
+    }
+    
   }
   `
 }
 
 const rotateMainKeyframe = ({
+  ready,
   timeLoss,
   totalTime
 }: KeyframesType) => keyframes`
@@ -82,7 +101,7 @@ const rotateMainKeyframe = ({
   transform: rotate(${(360 * timeLoss) / totalTime}deg);
 }
 100% {
-  transform: rotate(360deg);
+  transform: rotate(${ready ? 360 : (360 * timeLoss) / totalTime}deg);
 }
 `
 
@@ -169,6 +188,7 @@ export const MainLayerStyle = styled.div<MainLayerStyleType>`
       ${(p) => (p.negative ? 'transparent' : p.color)};
     animation-name: ${(p) =>
       borderMainKeyframe({
+        ready: p.ready,
         color: p.color,
         negative: p.negative,
         timeLoss: p.timeLoss,
@@ -181,21 +201,10 @@ export const MainLayerStyle = styled.div<MainLayerStyleType>`
     border-top-color: ${(p) => (p.negative ? p.color : p.backgroundColor)};
     animation-name: ${(p) =>
       rotateMainKeyframe({
+        ready: p.ready,
         timeLoss: p.timeLoss,
         totalTime: p.totalTime
       })};
   }
   background-color: transparent;
-`
-
-export const StaticLayerStyle = styled.div<StaticLayerStyleType>`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  border-radius: 100%;
-  align-items: center;
-  box-sizing: border-box;
-  justify-content: center;
-  border: ${(p) => p.borderWidth}px solid ${(p) => p.color};
-  background-color: ${(p) => p.backgroundColor};
 `

@@ -19,6 +19,7 @@ export type LinePropsType = {
   totalTime?: number
   ready?: boolean
   onRefresh?: () => void
+  renderText?: (val: number) => string
 }
 
 const Line = ({
@@ -33,6 +34,7 @@ const Line = ({
   totalTime = ANIMATION_TIME,
   currentTime = ANIMATION_TIME,
   direction = EDirectionType.HORIZONTAL,
+  renderText,
   onRefresh = () => {}
 }: LinePropsType) => {
   const [current, setCurrentTime] = useState(currentTime)
@@ -64,6 +66,7 @@ const Line = ({
             totalTime={totalTime}
             currentTime={currentTime}
             animationType={EAnimationType.LINE}
+            renderText={renderText}
             onRefresh={handleRefresh}
           />
         </React.Fragment>

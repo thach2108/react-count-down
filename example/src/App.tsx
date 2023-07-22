@@ -1,12 +1,12 @@
 import { Suspense } from 'react'
-import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router-dom'
+import { HashRouter, Link, Navigate, Route, Routes } from 'react-router-dom'
 import ExampleCircle from './pages/Circle'
 import ExampleLine from './pages/Line'
 
 const App = () => {
   return (
     <div className='mx-auto max-w-screen-xl px-4'>
-      <BrowserRouter basename='/react-count-down'>
+      <HashRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <div className='grid grid-cols-10 gap-4'>
             <div className='col-span-2 h-screen'>
@@ -33,7 +33,7 @@ const App = () => {
             </div>
           </div>
         </Suspense>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   )
 }

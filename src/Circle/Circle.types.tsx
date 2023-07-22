@@ -1,8 +1,9 @@
 export type KeyframesType = {
   color?: string
-  negative?: boolean
+  ready?: boolean
   timeLoss: number
   totalTime: number
+  negative?: boolean
   backgroundColor?: string
 }
 
@@ -14,6 +15,7 @@ export type CounterViewStyleType = {
 
 export type OverlayLayerStyleType = {
   negative?: boolean
+  ready?: boolean
   color: string
   timeLoss: number
   totalTime: number
