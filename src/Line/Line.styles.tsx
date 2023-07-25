@@ -8,6 +8,7 @@ import {
 } from './Line.types'
 
 const mainKeyframe = ({
+  ready,
   negative,
   gradients,
   direction,
@@ -16,7 +17,7 @@ const mainKeyframe = ({
 }: KeyframesType) => {
   let firstBg = ``
 
-  const renderBg = () => {
+  const renderGradientBg = () => {
     if (gradients.length < 2) return ''
 
     let rainbow = new Rainbow()
@@ -36,18 +37,19 @@ const mainKeyframe = ({
     return css
   }
 
-  let css = renderBg()
+  let css = renderGradientBg()
+  const percent = (currentTime * 100) / totalTime
 
   return keyframes`
   0% {
     ${direction === EDirectionType.HORIZONTAL ? 'width' : 'height'}: 
-    ${negative ? 0 : (currentTime * 100) / totalTime}%;
+    ${negative ? 0 : percent}%;
     ${firstBg}
   }
   ${css}
   100% {
     ${direction === EDirectionType.HORIZONTAL ? 'width' : 'height'}: 
-    ${negative ? (currentTime * 100) / totalTime : 0}%;
+    ${negative ? (ready ? percent : 0) : ready ? 0 : percent}%;
   }
   `
 }
@@ -76,6 +78,7 @@ export const MainLayerStyle = styled.div<MainLayerStyleType>`
   animation-timing-function: linear;
   animation-name: ${(p) =>
     mainKeyframe({
+      ready: p.ready,
       negative: p.negative,
       totalTime: p.totalTime,
       direction: p.direction,
@@ -84,11 +87,4 @@ export const MainLayerStyle = styled.div<MainLayerStyleType>`
     })};
   ${(p) =>
     p.direction === EDirectionType.HORIZONTAL ? 'height' : 'width'}: 100%;
-`
-
-export const StaticLayerStyle = styled.div<{ backgroundColor: string }>`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: ${(p) => p.backgroundColor};
 `

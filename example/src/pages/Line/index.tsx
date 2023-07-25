@@ -46,7 +46,7 @@ const ExampleLine = () => {
           <div>{`import { Line } from 'react-count-down-animation'`}</div>
           <br />
           {`<Line
-            currentTime={29} 
+            currentTime={29}
             gradientBgColors={[
               '#22c55e',
               '#84cc16',
@@ -69,6 +69,7 @@ const ExampleLine = () => {
             currentTime={23}
             borderColor='violet'
             direction={EDirectionType.VERTICAL}
+            renderText={(val) => <span>{val}s</span>}
           />
           <h4 className='text-xl'>Custom styles </h4>
         </div>
@@ -83,6 +84,7 @@ const ExampleLine = () => {
             currentTime={23}
             borderColor='violet'
             direction={EDirectionType.VERTICAL}
+            renderText={(val) => <span>{val}s</span>}
           />`}
         </code>
       </div>
@@ -199,7 +201,10 @@ const ExampleLine = () => {
             <td>
               <span className='text-blue-600'>[]</span>
             </td>
-            <td>Min length is 2. ex: ["green", "yellow", "red"]</td>
+            <td>
+              Min length is 2. <br />
+              ex: ["green", "yellow", "red"]
+            </td>
           </tr>
           <tr>
             <td>onRefresh?</td>
@@ -208,6 +213,18 @@ const ExampleLine = () => {
             </td>
             <td>
               () ={'>'} {'{}'}
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>renderText?</td>
+            <td>
+              <span className='text-green-600'>
+                () ={'>'} React.ReactNode | string
+              </span>
+            </td>
+            <td>
+              <span className='text-blue-600'>undefined</span>
             </td>
             <td></td>
           </tr>

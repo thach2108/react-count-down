@@ -1,4 +1,5 @@
 export type KeyframesType = {
+  ready?: boolean
   totalTime: number
   negative?: boolean
   gradients: string[]
@@ -13,6 +14,7 @@ export type CounterViewStyleType = {
 }
 
 export type MainLayerStyleType = {
+  ready?: boolean
   totalTime: number
   negative?: boolean
   currentTime: number

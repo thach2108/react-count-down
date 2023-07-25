@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ViewerStyle } from './Counter.styles'
 import { EAnimationType } from './Counter.types'
 
@@ -22,6 +22,7 @@ const Couter = ({
   renderText = (val) => `${val}`
 }: CouterPropsType) => {
   const viewer = useRef<HTMLSpanElement | null>(null)
+  const [counter, setCounter] = useState<number>(currentTime)
 
   useEffect(() => {
     if (!ready) return
@@ -32,8 +33,11 @@ const Couter = ({
       viewer.current.innerHTML = `${Number(viewer.current.innerHTML) - 1}`
       if (viewer.current.innerHTML === '0') {
         viewer.current.innerHTML = `${totalTime}`
+        setCounter(Number(viewer.current.innerHTML))
         onRefresh()
+        return
       }
+      setCounter(Number(viewer.current.innerHTML))
     }, 1000)
 
     return () => clearInterval(interval)
@@ -48,7 +52,7 @@ const Couter = ({
       <span ref={viewer} style={{ display: 'none' }}>
         {currentTime}
       </span>
-      {renderText(currentTime)}
+      {renderText(counter)}
     </ViewerStyle>
   )
 }

@@ -36,16 +36,23 @@ const ExampleCircle = () => {
             textColor='green'
             totalTime={40}
             currentTime={23}
-            renderText={() => <span>test</span>}
+            renderText={(val) => <span>{val}s</span>}
           />
           <h4 className='text-xl'>Custom the circle's styles </h4>
         </div>
         <code>
           <div>{`import { Circle } from 'react-count-down-animation'`}</div>
           <br />
-          {
-            '<Circle borderWidth={5} color="red" textColor="green" width={50} height={50} />'
-          }
+          {`<Circle
+            width={50}
+            height={50}
+            color='red'
+            borderWidth={5}
+            textColor='green'
+            totalTime={40}
+            currentTime={23}
+            renderText={(val) => <span>{val}s</span>}
+          />`}
         </code>
       </div>
       <h4 className='text-xl mb-3'>Props</h4>
@@ -158,6 +165,18 @@ const ExampleCircle = () => {
             </td>
             <td>
               () ={'>'} {'{}'}
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>renderText?</td>
+            <td>
+              <span className='text-green-600'>
+                () ={'>'} React.ReactNode | string
+              </span>
+            </td>
+            <td>
+              <span className='text-blue-600'>undefined</span>
             </td>
             <td></td>
           </tr>
